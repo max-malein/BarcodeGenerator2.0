@@ -65,15 +65,8 @@ namespace BarcodeGenerator
             var row = 2;            
             foreach (Product product in productData)
             {
-                myWorksheet.Cells[row, 1].Value = "Pavluque";
-                myWorksheet.Cells[row, 3].Value = "PAV" + product.Sku.Split('-')[0];
-                myWorksheet.Cells[row, 4].Value = product.Size;
-                myWorksheet.Cells[row, 5].Value = "Слитные купальники";
-                myWorksheet.Cells[row, 6].Value = "Женский";
-                myWorksheet.Cells[row, 7].Value = product.Quantity;
-                myWorksheet.Cells[row, 8].Value = product.Price;
-                myWorksheet.Cells[row, 11].Value = product.Price;
-                myWorksheet.Cells[row, 12].Value = "РУБ";
+                myWorksheet.Cells[row, 1].Value = product.Sku;
+                myWorksheet.Cells[row, 2].Value = product.Quantity;
 
                 row++;
             }
