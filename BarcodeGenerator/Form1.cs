@@ -43,6 +43,8 @@ namespace BarcodeGenerator
         {
             InitializeComponent();
 
+            toolStripStatusLabel1.Text = string.Empty;
+
             int yValue = yInitialValue;
             for (int i=0; i<1; i++)
             {
@@ -59,6 +61,14 @@ namespace BarcodeGenerator
             this.addRowButton.Text = "+";
             this.addRowButton.UseVisualStyleBackColor = true;
             this.addRowButton.Click += new System.EventHandler(this.addRowButton_Click);
+            this.addRowButton.Click += new EventHandler(UpdateStatus);
+        }
+
+        private void UpdateStatus(object sender, EventArgs e)
+        {
+            var products = CollectProducts(true);
+            var totalPrice = products.Sum(p => p.Price);
+            toolStripStatusLabel1.Text = $"{products.Count} шмоток на общую сумму {totalPrice:C0}";
         }
 
         private InputRow AddInputRow(int y)
@@ -68,10 +78,16 @@ namespace BarcodeGenerator
             Controls.Add(newRow.ProductName);
             Controls.Add(newRow.Size);
             Controls.Add(newRow.Quantity);
+
+            //обновления строки статуса
+            newRow.Size.TextChanged += new EventHandler(UpdateStatus);
+            newRow.Quantity.TextChanged += new EventHandler(UpdateStatus);
+            newRow.Sku.TextChanged += new EventHandler(UpdateStatus);
+
             return newRow;
         }
 
-        private void labelButton_Click(object sender, System.EventArgs e)
+        private void StickersButton_Click(object sender, System.EventArgs e)
         {
             // Displays a SaveFileDialog so the user can save the Image  
             // assigned to Button2.  
