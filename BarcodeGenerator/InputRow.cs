@@ -19,7 +19,7 @@ namespace BarcodeGenerator
 
         public InputRow(int rowPosition)
         {
-            SizeOptions = new string[] { "3", "4", "5", "6", "7", "8", "XS", "S", "M", "L", "XL" };
+            SizeOptions = new string[] { "3", "4", "5", "6", "7", "8", "10", "12", "XXS", "XS", "S", "M", "L", "XL" };
             // SKU
             //
             Sku = new ComboBox();
